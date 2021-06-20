@@ -1,0 +1,7 @@
+.dark-hover:hover {
+    background: #32383d;
+}
+
+.navbar-collapse {
+    flex-grow: 0;
+}

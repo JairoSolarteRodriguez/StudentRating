@@ -1,0 +1,9 @@
+body {
+    height: 100vh;
+}
+
+.transparent {
+    /* background-color: rgba(82, 170, 228, 0.111); */
+    background: rgba(255, 255, 255, 0.056);
+    border-radius: 2rem;
+}
