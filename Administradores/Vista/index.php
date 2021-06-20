@@ -70,7 +70,7 @@
         </div>
         <a href="add.php" class="btn btn-primary mb-3">Registrar Administrador</a>
 
-        <div class="table-responsive">
+        <div class="table-responsive mb-3">
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
@@ -108,28 +108,27 @@
                 </tbody>
             </table>
 
-            <nav>
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link">Anterior</a>
-                    </li>
-                    <li class="page-item active">
-                        <a href="#" class="page-link">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">Siguiente</a>
-                    </li>
-                </ul>
-            </nav>
         </div>
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">Anterior</a>
+                </li>
+                <li class="page-item active">
+                    <a href="#" class="page-link">1</a>
+                </li>
+                <li class="page-item">
+                    <a href="#" class="page-link">2</a>
+                </li>
+                <li class="page-item">
+                    <a href="#" class="page-link">3</a>
+                </li>
+                <li class="page-item">
+                    <a href="#" class="page-link">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
     </div>
-
 
     <script src="../../Js/dark-mode.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

@@ -32,7 +32,7 @@
     <?php
         if($ModeloUsuarios->getPerfil() == 'Docente'):
             ?>
-            <nav class="navbar navbar-expand-md navbar-light bg-dark" id="nav">
+            <nav class="navbar navbar-expand-md navbar-light" id="nav">
                 <div class="container">
                     <a href="#" class="navbar-brand text-light fs-3 nav-link">Student<span class="fw-bold">Rating</span></a>
                     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
@@ -41,20 +41,20 @@
                         <ul class="navbar-nav">
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link text-light dark-hover dropdown-item">Estudiantes</a>
+                                <a href="#" class="nav-link text-light  dropdown-item">Estudiantes</a>
                             </li>
 
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle text-light dark-hover" id="user" data-bs-toggle="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle text-light " id="user" data-bs-toggle="dropdown">
                                     <i class="bi bi-person-circle"></i> <?= $ModeloUsuarios->getNombre();?> - <?= $ModeloUsuarios->getPerfil(); ?> </a>
 
-                                <div class="dropdown-menu bg-dark" id="drop" aria-labelledby="navbarScrollingDropdown">
+                                <div class="dropdown-menu" id="drop" aria-labelledby="navbarScrollingDropdown">
                                     <!-- ARREGLAR ACA EL ROL -->
-                                    <a href="#" class="dark-hover dropdown-item nav-link text-light px-3">Perfil</a>
-                                    <a href="#" class="dark-hover dropdown-item nav-link text-light px-3">Cursos</a>
+                                    <a href="#" class=" dropdown-item nav-link text-light px-3">Perfil</a>
+                                    <a href="#" class=" dropdown-item nav-link text-light px-3">Cursos</a>
                                     <div class="dropdown-divider bg-light"></div>
-                                    <a href="../../Usuarios/Controladores/salir.php" class="dark-hover dropdown-item nav-link text-light px-3"><i class="bi bi-box-arrow-right"></i> Salir</a>
-                                    <a href="#" class="dark-hover dropdown-item nav-link text-light px-3" id="mode"><i class="bi bi-moon-fill bi-sun" id="icon"> Claro</i></a>
+                                    <a href="../../Usuarios/Controladores/salir.php" class=" dropdown-item nav-link text-light px-3"><i class="bi bi-box-arrow-right"></i> Salir</a>
+                                    <a href="#" class=" dropdown-item nav-link text-light px-3" id="mode"><i class="bi bi-moon-fill verify" id="icon"> oscuro</i></a>
                                 </div>
                             </li>
                         </ul>
@@ -64,7 +64,7 @@
             <?php
         else:
             ?>
-        <nav class="navbar navbar-expand-md navbar-light bg-dark" id="nav">
+        <nav class="navbar navbar-expand-md navbar-light" id="nav">
             <div class="container">
                 <a href="#" class="navbar-brand text-light fs-3 nav-link">Student<span class="fw-bold">Rating</span></a>
                 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
@@ -72,30 +72,30 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="../../Administradores/Vista/index.php" class="nav-link text-light dark-hover dropdown-item">Administradores</a>
+                            <a href="../../Administradores/Vista/index.php" class="nav-link text-light  dropdown-item">Administradores</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../Docentes/Vista/index.php" class="nav-link text-light dark-hover dropdown-item">Docentes</a>
+                            <a href="../../Docentes/Vista/index.php" class="nav-link text-light  dropdown-item">Docentes</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../../Materias/Vista/index.php" class="nav-link text-light dark-hover dropdown-item">Materias</a>
+                            <a href="../../Materias/Vista/index.php" class="nav-link text-light  dropdown-item">Materias</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light dark-hover dropdown-item">Estudiantes</a>
+                            <a href="#" class="nav-link text-light  dropdown-item">Estudiantes</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle text-light dark-hover" id="user" data-bs-toggle="dropdown">
+                            <a href="#" class="nav-link dropdown-toggle text-light " id="user" data-bs-toggle="dropdown">
                                 <i class="bi bi-person-circle"></i> <?= $ModeloUsuarios->getNombre(); ?></a>
 
-                            <div class="dropdown-menu bg-dark" id="drop" aria-labelledby="navbarScrollingDropdown">
+                            <div class="dropdown-menu" id="drop" aria-labelledby="navbarScrollingDropdown">
                                 <!-- ARREGLAR ACA EL ROL -->
-                                <a href="#" class="disabled dark-hover dropdown-item nav-link text-light px-3">Rol: <?= $ModeloUsuarios->getPerfil();?></a>
+                                <a href="#" class="disabled  dropdown-item nav-link text-light px-3">Rol: <?= $ModeloUsuarios->getPerfil();?></a>
                                 <div class="dropdown-divider bg-light"></div>
-                                <a href="#" class="dark-hover dropdown-item nav-link text-light px-3">Perfil</a>
+                                <a href="#" class=" dropdown-item nav-link text-light px-3">Perfil</a>
                                 <div class="dropdown-divider bg-light"></div>
-                                <a href="../../Usuarios/Controladores/salir.php" class="dark-hover dropdown-item nav-link text-light px-3"><i class="bi bi-box-arrow-right"></i> Salir</a>
-                                <a href="#" class="dark-hover dropdown-item nav-link text-light px-3" id="mode"><i class="bi bi-moon-fill bi-sun" id="icon"> Claro</i></a>
+                                <a href="../../Usuarios/Controladores/salir.php" class=" dropdown-item nav-link text-light px-3"><i class="bi bi-box-arrow-right"></i> Salir</a>
+                                <a href="#" class=" dropdown-item nav-link text-light px-3" id="mode"><i class="bi bi-moon-fill verify" id="icon"> Oscuro</i></a>
                             </div>
                         </li>
                     </ul>
