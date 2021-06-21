@@ -3,46 +3,52 @@
 
     $ModeloUsuarios = new Usuarios();
     $ModeloUsuarios->authSession();
-
-    if(isset($_GET['error'])){
-        $error = $_GET['error'];
-
-        if($error == 'no_empty'){
-            echo '<strong style="color: red;">No puede dejar campos en blanco</strong>';
-        }elseif($error == 'badName'){
-            echo '<strong style="color: red;">Introduzca correctamente el campo Nombre (Solo caracteres alfabeticos)</strong>';
-        }elseif($error == 'badLastName'){
-            echo '<strong style="color: red;">Introduzca correctamente el campo Apellido (Solo caracteres alfabeticos)</strong>';
-        }elseif($error == 'badUser'){
-            echo '<strong style="color: red;">Introduzca correctamente el campo Usuario (Solo caracteres alfa-numéricos Ej: 123Usuario)</strong>';
-        }elseif($error == 'lowPass'){
-            echo '<strong style="color: red;">La contraseña debe tener mas de 5 caracteres</strong>';
-        }
-    }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sistema de Notas</title>
-</head>
-<body>
-    <h1>Registrar Administrador</h1>
 
-    <form action="../Controladores/add.php" method="POST">
-        <label for="Nombre">Nombre</label><br>
-        <input type="text" autocomplete="off" required placeholder="Nombre" name="Nombre"><br><br>
+<div class="modal" id="add_admin">
 
-        <label for="Apellido">Apellido</label><br>
-        <input type="text" autocomplete="off" required placeholder="Apellido" name="Apellido"><br><br>
+    <div class="modal-dialog">
 
-        <label for="Usuario">Nombre Usuario</label><br>
-        <input type="text" autocomplete="off" required placeholder="Nombre Usuario" name="Usuario"><br><br>
+        <div class="modal-content">
 
-        <label for="Contrasena">Contraseña</label><br>
-        <input type="password" autocomplete="off" required placeholder="Contraseña" name="Contrasena"><br><br>
+            <div class="modal-header">
+                <div class="container">
+                    <h1 class="text-center">Registrar Administrador</h1>
+                </div>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form action="../Controladores/add.php" method="POST" id="formulario">
 
-        <input type="submit" value="Registrar Administrador">
-    </form>
-</body>
-</html>
+                        <label for="Nombre">Nombre</label><br>
+                        <div class="position-relative" id="grupo_nombre">
+                            <input type="text" id="Nombre" autocomplete="off" required placeholder="Nombre" name="Nombre" class="form-control mb-2"><i class="bi  position-absolute px-2 fw-bold" style="top: 4px; right: 0; "></i>
+                            <p class="formulario_error alert alert-danger fw-light visually-hidden" style="font-size: 0.85rem;">El nombre tiene que ser de 1 a 40 caracteres y solo puede contener letras</p>
+                        </div>
+
+                        <label for="Apellido">Apellido</label><br>
+                        <div class="position-relative" id="grupo_apellido">
+                            <input type="text" id="Apellido" autocomplete="off" required placeholder="Apellido" name="Apellido" class="form-control mb-2"><i class="bi  position-absolute px-2 fw-bold" style="top: 4px; right: 0; "></i>
+                            <p class="formulario_error alert alert-danger fw-light visually-hidden" style="font-size: 0.85rem;">El apellido tiene que ser de 1 a 40 caracteres y solo puede contener letras</p>
+                        </div>
+
+                        <label for="Usuario">Nombre Usuario</label><br>
+                        <div class="position-relative" id="grupo_usuario">
+                            <input type="text" id="Usuario" autocomplete="off" required placeholder="Nombre Usuario" name="Usuario" class="form-control mb-2"><i class="bi  position-absolute px-2 fw-bold" style="top: 4px; right: 0; "></i>
+                            <p class="formulario_error alert alert-danger fw-light visually-hidden" style="font-size: 0.85rem;">El nombre tiene que ser de 4 a 16 caracteres y solo puede contener letras</p>
+                        </div>
+
+                        <label for="Contrasena">Contraseña</label><br>
+                        <div class="position-relative" id="grupo_contrasena">
+                            <input type="password" id="Contrasena" autocomplete="off" required placeholder="Contraseña" name="Contrasena" class="form-control mb-2"><i class="bi  position-absolute px-2 fw-bold" style="top: 4px; right: 0; "></i>
+                            <p class="formulario_error alert alert-danger fw-light visually-hidden" style="font-size: 0.85rem;">La contraseña tiene que tener más de 4 caracteres</p>
+                        </div>
+                    </form>
+
+                    <button class="btn btn-success w-100" type="submit" form="formulario">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

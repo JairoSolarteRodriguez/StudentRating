@@ -61,16 +61,23 @@
             </div>
         </div>
     </nav>
-    <div class="container-xl mt-5">
-        <h1 class="container text-center mb-4">Administradores</h1>
+    <div class="container-xl mt-3">
+        <h1 class="container text-center mb-3">Administradores</h1>
 
         <div class="input-group mb-4 container">
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
             <input type="search" class="form-control" placeholder="Buscar">
         </div>
-        <a href="add.php" class="btn btn-primary mb-3">Registrar Administrador</a>
 
-        <div class="table-responsive mb-3">
+        <div class="d-flex justify-content-between">
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add_admin">Registrar Administrador</button>
+        </div>
+
+        <?php
+            require_once('add.php');
+        ?>
+
+        <div class="table-responsive mb-2">
             <table class="table table-dark table-hover">
                 <thead>
                     <tr>
@@ -131,6 +138,7 @@
     </div>
 
     <script src="../../Js/dark-mode.js"></script>
+    <script src="../../Js/validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>
