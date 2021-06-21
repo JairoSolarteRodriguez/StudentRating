@@ -13,7 +13,7 @@
 
             <div class="modal-header">
                 <div class="container">
-                    <h1 class="text-center">Registrar Administrador</h1>
+                    <h1 class="text-center fs-3">Registrar Administrador</h1>
                 </div>
                 <button class="btn-close" data-bs-dismiss="modal"></button>
             </div>
