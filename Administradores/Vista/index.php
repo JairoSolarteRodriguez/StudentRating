@@ -104,7 +104,7 @@
                     <td class="align-middle"><?= $Admin['PERFIL'];?></td>
                     <td class="align-middle"><?= $Admin['ESTADO'];?></td>
                     <td class="align-middle">
-                        <a href="edit.php?Id=<?= $Admin['ID_USUARIO'];?>&error=null" class="btn btn-primary"><i class="bi bi-pen"></i> Editar</a>
+                        <a href="edit.php?Id=<?= $Admin['ID_USUARIO'];?>" class="btn btn-primary"><i class="bi bi-pen"></i> Editar</a>
                         <a href="delete.php?Id=<?= $Admin['ID_USUARIO'];?>" class="btn btn-danger"><i class="bi bi-trash2-fill"></i> Borrar</a>
                     </td>
                 </tr>
