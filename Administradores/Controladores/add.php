@@ -15,9 +15,9 @@
 
         $ModeloAdministradores->add($Nombre, $Apellido, $Usuario, $Password);
 
-        header('Location: ../Vista/index.php');
+        header('Location: ../Vista/index.php?pagina=1');
     
     }else{
-        header('Location: ../Vista/index.php');
+        header('Location: ../Vista/index.php?pagina=1');
     }
 ?>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,6 @@
 </head>
 <body class="bg-dark">
     <div class="container-fluid d-flex justify-content-center align-items-center h-75 w-75 mt-5">
-
         <div class="transparent border border-2 p-5 mt-5 text-center shadow-lg">
             <h1 class="fs-2 p-3 text-light">Student<span class="fw-bold">Rating</span></h1>
 

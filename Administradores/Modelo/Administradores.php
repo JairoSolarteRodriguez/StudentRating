@@ -16,16 +16,18 @@
             $statement->bindParam(':Password', $Password);
 
             if($statement->execute()){
-                header('Location: ../Vista/index.php');
+                header('Location: ../Vista/index.php?pagina=1');
             }else{
-                header('Location: ../Vista/add.php');
+                header('Location: ../Vista/add.php?pagina=1');
             }
         }
 
-        public function get(){
+        public function get($start, $n_articulos){
             $rows = null;
 
-            $statement = $this->db->prepare("SELECT * FROM usuarios WHERE PERFIL = 'Administrador'");
+            $statement = $this->db->prepare("SELECT * FROM usuarios WHERE PERFIL = 'Administrador' LIMIT :iniciar, :n_articulos");
+            $statement->bindParam(':iniciar' , $start, PDO::PARAM_INT);
+            $statement->bindParam(':n_articulos' , $n_articulos, PDO::PARAM_INT);
             $statement->execute();
 
             while($result = $statement->fetch()){
@@ -33,6 +35,20 @@
             }
             return $rows;
         }
+
+        public function pagi($paginas){
+            $statement = $this->db->prepare("SELECT * FROM usuarios WHERE PERFIL = 'Administrador'");
+            $statement->execute();
+            
+            $total_articulos = $statement->rowCount();
+
+            $paginas_totales = $total_articulos / $paginas;
+            $paginas_totales = ceil($paginas_totales);
+
+            return $paginas_totales;
+        }
+
+      
 
         public function getById($Id){
             $rows = null;
@@ -60,9 +76,9 @@
             $statement->bindParam(':Estado', $Estado);
 
             if($statement->execute()){
-                header('Location: ../Vista/index.php');
+                header('Location: ../Vista/index.php?pagina=1');
             }else{
-                header('Location: ../Vista/edit.php');
+                header('Location: ../Vista/edit.php?pagina=1');
             }
         }
 
@@ -73,9 +89,9 @@
             $statement->bindParam(':Id', $Id);
             
             if($statement->execute()){
-                header('Location: ../Vista/index.php');
+                header('Location: ../Vista/index.php?pagina=1&exito=ok');
             }else{
-                header('Location: ../Vista/delete.php');
+                header('Location: ../Vista/delete.php?pagina=1');
             }
         }
     }

@@ -1,6 +1,14 @@
 <?php
     require_once('../../Usuarios/Modelo/Usuarios.php');
     require_once('../Modelo/Administradores.php');
+    
+    if(!$_GET){
+        header("Location: index.php?pagina=1");
+    }
+
+    //ARTICULOS POR PAGINAS Y VALOR DE INICIO DEL LIMIT DE FUNCION GET
+    $articulosPorPagina = 10;
+    $start = ($_GET['pagina']-1)*$articulosPorPagina;
 
     $ModeloUsuarios = new Usuarios();
     $ModeloUsuarios->authSessionAdmin();
@@ -8,10 +16,12 @@
 
     $ModeloAdministradores = new Administradores();
 
-
+    // OBTENER EL NUMERO DE PAGINAS DINAMICAMENTE
+    // PASAMOS POR PARAMETRO CUANTOS ELEMENTOS POR PAGINA QUIERO QUE TENGA.
+    $paginas = $ModeloAdministradores->pagi($articulosPorPagina);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -71,6 +81,13 @@
 
         <div class="d-flex justify-content-between">
             <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add_admin">Registrar Administrador</button>
+
+            <?php if(isset($_GET['exito'])): ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Registro eliminado exitosamente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
         </div>
 
         <?php
@@ -92,7 +109,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        $Administradores = $ModeloAdministradores->get();
+                        $Administradores = $ModeloAdministradores->get($start, $articulosPorPagina);
                         if($Administradores != null):
                             foreach($Administradores as $Admin):
                     ?>
@@ -118,20 +135,16 @@
         </div>
         <nav>
             <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a href="#" class="page-link">Anterior</a>
+                <li class="page-item <?php echo $_GET['pagina']<=1? 'disabled': '' ?>">
+                    <a href="index.php?pagina=<?=$_GET['pagina']-1; ?>" class="page-link">Anterior</a>
                 </li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">2</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">3</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">Siguiente</a>
+                <?php for($i=0; $i<$paginas; $i++): ?>
+                    <li class="page-item <?php echo $_GET['pagina']==$i+1 ? 'active': '' ?>">
+                        <a href="index.php?pagina=<?= $i+1 ?>" class="page-link"><?= $i+1?></a>
+                    </li>
+                <?php endfor; ?>
+                <li class="page-item <?php echo $_GET['pagina']>=$paginas? 'disabled': '' ?>">
+                    <a href="index.php?pagina=<?=$_GET['pagina']+1; ?>" class="page-link">Siguiente</a>
                 </li>
             </ul>
         </nav>

@@ -7,7 +7,7 @@
         $Id = $_POST['Id'];
         $ModeloAdministradores->delete($Id);
     }else{
-        header('Location: ../Vistas/index.php');
+        header('Location: ../Vistas/index.php?pagina=1');
     }
 
 ?>

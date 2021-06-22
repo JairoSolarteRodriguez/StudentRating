@@ -16,6 +16,6 @@
             $ModeloAdministradores->update($Id, $Nombre, $Apellido, $Usuario, $Password, $Estado);
 
     }else{
-        header('Location: ../Vista/index.php');
+        header('Location: ../Vista/index.php?pagina=1');
     }
 ?>
