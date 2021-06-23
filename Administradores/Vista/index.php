@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../css/vistas.css">
+    <script src="../../Js/exito.js"></script>
     <title>Sistema de Notas</title>
 </head>
 <body>
@@ -41,7 +42,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-light dark-hover dropdown-item">Administradores</a>
+                        <a href="index.php?pagina=1" class="nav-link text-light dark-hover dropdown-item">Administradores</a>
                     </li>
                     <li class="nav-item">
                         <a href="../../Docentes/Vista/index.php" class="nav-link text-light dark-hover dropdown-item">Docentes</a>
@@ -83,10 +84,11 @@
             <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add_admin">Registrar Administrador</button>
 
             <?php if(isset($_GET['exito'])): ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Registro eliminado exitosamente.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="" id="exito">
                 </div>
+                <script>
+                    mensaje();
+                </script>
             <?php endif; ?>
         </div>
 

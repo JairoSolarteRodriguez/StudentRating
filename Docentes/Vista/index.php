@@ -1,12 +1,24 @@
 <?php
     require_once('../../Usuarios/Modelo/Usuarios.php');
     require_once('../Modelo/Docentes.php');
+    
+    if(!$_GET){
+        header("Location: index.php?pagina=1");
+    }
 
     $ModeloUsuarios = new Usuarios();
     $ModeloUsuarios->authSessionAdmin();
     $ModeloUsuarios->authSession();
 
+    //ARTICULOS POR PAGINAS Y VALOR DE INICIO DEL LIMIT DE FUNCION GET
+    $articulosPorPagina = 10;
+    $start = ($_GET['pagina']-1)*$articulosPorPagina;
+
     $ModeloDocentes = new Docentes();
+
+    // OBTENER EL NUMERO DE PAGINAS DINAMICAMENTE
+    // PASAMOS POR PARAMETRO CUANTOS ELEMENTOS POR PAGINA QUIERO QUE TENGA.
+    $paginas = $ModeloDocentes->pagi($articulosPorPagina);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +32,9 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md navbar-light bg-dark" id="nav">
+    <nav class="navbar navbar-expand-md navbar-light bg-dark" id="nav">
         <div class="container">
-            <a href="#" class="navbar-brand text-light fs-3 nav-link">Student<span class="fw-bold">Rating</span></a>
+            <a href="index.php?pagina=1" class="navbar-brand text-light fs-3 nav-link">Student<span class="fw-bold">Rating</span></a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -59,14 +71,6 @@
         </div>
     </nav>
 
-    <!-- <h1>
-        <a href="../../Administradores/Vista/index.php">Administradores</a> - 
-        <a href="#">Docentes</a> - 
-        <a href="../../Materias/Vista/index.php">Materias</a> -
-        <a href="../../Estudiantes/Vista/index.php">Estudiantes</a> - 
-        <a href="../../Usuarios/Controladores/salir.php">Salir</a>
-    </h1> -->
-
     <div class="container-xl mt-5">
         <h1 class="container text-center mb-4">Docentes</h1>
 
@@ -75,7 +79,11 @@
             <input type="search" class="form-control" placeholder="Buscar">
         </div>
 
-        <a href="add.php" class="btn btn-primary mb-3">Registrar Docente</a>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add_teach">Registrar Docente</button>
+        
+        <?php
+            require_once('add.php');
+        ?>
 
         <div class="table-responsive">
             <table class="table table-dark table-hover">
@@ -92,7 +100,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        $Docentes = $ModeloDocentes->get();
+                        $Docentes = $ModeloDocentes->get($start, $articulosPorPagina);
             
                         if($Docentes != null):
                             foreach($Docentes as $Docente):
@@ -118,20 +126,18 @@
 
             <nav>
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link">Anterior</a>
+                    <li class="page-item <?php echo $_GET['pagina']<=1? 'disabled': '' ?>">
+                        <a href="index.php?pagina=<?=$_GET['pagina']-1; ?>" class="page-link">Anterior</a>
                     </li>
-                    <li class="page-item active">
-                        <a href="#" class="page-link">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">Siguiente</a>
+
+                    <?php for($i=0; $i<$paginas; $i++): ?>
+                        <li class="page-item <?php echo $_GET['pagina']==$i+1 ? 'active': '' ?>">
+                            <a href="index.php?pagina=<?= $i+1 ?>" class="page-link"><?= $i+1?></a>
+                        </li>
+                    <?php endfor; ?>
+                
+                    <li class="page-item <?php echo $_GET['pagina']>=$paginas? 'disabled': '' ?>">
+                        <a href="index.php?pagina=<?=$_GET['pagina']+1; ?>" class="page-link">Siguiente</a>
                     </li>
                 </ul>
             </nav>
@@ -141,6 +147,7 @@
 
 
     <script src="../../Js/dark-mode.js"></script>
+    <script src="../../Js/validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -2,37 +2,16 @@
     require_once('../Modelo/Docentes.php');
 
     if($_POST){
-        $error = null;
 
-        if(!empty($_POST['Nombre']) && !empty($_POST['Apellido']) && !empty($_POST['Usuario']) && !empty($_POST['Contrasena'])){
+        $ModeloDocentes = new Docentes();
 
-            $ModeloDocentes = new Docentes();
-    
-            $Nombre = $_POST['Nombre'];
-            $Apellido = $_POST['Apellido'];
-            $Usuario = $_POST['Usuario'];
-            $Contra =  $_POST['Contrasena'];
-            $Password = hash('sha512', $Contra);
-    
-            if(!is_string($Nombre) || preg_match("/[0-9]/", $Nombre) || !preg_match("/[a-zA-Z ]+/", $Nombre)){
-                $error = 'badName';
-            }elseif(!is_string($Apellido) || preg_match("/[0-9]/", $Apellido) || !preg_match("/[a-zA-Z ]+/", $Nombre)){
-                $error = 'badLastName';
-            }elseif(!is_string($Usuario) || !ctype_alnum($Usuario) || is_numeric($Usuario)){
-                $error = 'badUser';
-            }elseif(strlen($Contra) < 6){
-                $error = 'lowPass';
-            }else{
-                $error = 'ok';
-                $ModeloDocentes->add($Nombre, $Apellido, $Usuario, $Password);
-            }
-        }else{
-            $error = 'no_empty';
-        }
+        $Nombre = $_POST['Nombre'];
+        $Apellido = $_POST['Apellido'];
+        $Usuario = $_POST['Usuario'];
+        $Contra =  $_POST['Contrasena'];
+        $Password = hash('sha512', $Contra);
 
-        if($error != null && $error != 'ok'){
-            header("Location: ../Vista/add.php?error=$error");
-        }
+        $ModeloDocentes->add($Nombre, $Apellido, $Usuario, $Password);
 
     }else{
         header('Location: ../Vista/index.php');

@@ -91,7 +91,7 @@
             if($statement->execute()){
                 header('Location: ../Vista/index.php?pagina=1&exito=ok');
             }else{
-                header('Location: ../Vista/delete.php?pagina=1');
+                header('Location: ../Vista/delete.php');
             }
         }
     }

@@ -22,16 +22,30 @@
             }
         }
 
-        public function get(){
+        public function get($start, $n_articulos){
             $rows = null;
 
-            $statement = $this->db->prepare("SELECT * FROM usuarios WHERE PERFIL = 'Docente'");
+            $statement = $this->db->prepare("SELECT * FROM usuarios WHERE PERFIL = 'Docente' LIMIT :iniciar, :n_articulos");
+            $statement->bindParam(':iniciar' , $start, PDO::PARAM_INT);
+            $statement->bindParam(':n_articulos' , $n_articulos, PDO::PARAM_INT);
             $statement->execute();
 
             while($result = $statement->fetch()){
                 $rows[] = $result;
             }
             return $rows;
+        }
+
+        public function pagi($paginas){
+            $statement = $this->db->prepare("SELECT * FROM usuarios WHERE PERFIL = 'Docente'");
+            $statement->execute();
+            
+            $total_articulos = $statement->rowCount();
+
+            $paginas_totales = $total_articulos / $paginas;
+            $paginas_totales = ceil($paginas_totales);
+
+            return $paginas_totales;
         }
 
         public function getById($Id){
