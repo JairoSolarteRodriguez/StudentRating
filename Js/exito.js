@@ -7,7 +7,8 @@ const mensaje = () => {
         </div>`;
 
     setTimeout(function() {
-        msj.innerHTML = '';
+        // msj.innerHTML = '';
+        window.location.href = "index.php?pagina=1";
     }, 3000);
     msj.innerHTML = mensaje;
 }
