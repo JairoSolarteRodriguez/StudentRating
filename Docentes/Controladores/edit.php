@@ -2,8 +2,6 @@
     require_once('../Modelo/Docentes.php');
 
     if($_POST){
-        $error = null;
-
         $ModeloDocentes = new Docentes();
 
         $Id = $_POST['Id'];

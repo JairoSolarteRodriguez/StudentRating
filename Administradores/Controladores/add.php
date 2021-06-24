@@ -1,10 +1,7 @@
 <?php 
     require_once('../Modelo/Administradores.php');
 
-    $error = null;
-
     if($_POST){
-
         $ModeloAdministradores = new Administradores();
 
         $Nombre = $_POST['Nombre'];
@@ -13,10 +10,7 @@
         $Contra =  $_POST['Contrasena'];
         $Password = hash('sha512', $Contra);
 
-        $ModeloAdministradores->add($Nombre, $Apellido, $Usuario, $Password);
-
-        header('Location: ../Vista/index.php?pagina=1');
-    
+        $ModeloAdministradores->add($Nombre, $Apellido, $Usuario, $Password);    
     }else{
         header('Location: ../Vista/index.php?pagina=1');
     }

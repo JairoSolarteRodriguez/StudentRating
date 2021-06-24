@@ -16,9 +16,9 @@
             $statement->bindParam(':Password', $Password);
 
             if($statement->execute()){
-                header('Location: ../Vista/index.php');
+                header('Location: ../Vista/index.php?pagina=1');
             }else{
-                header('Location: ../Vista/add.php');
+                header('Location: ../Vista/add.php?pagina=1');
             }
         }
 
@@ -72,9 +72,9 @@
             $statement->bindParam(':Estado', $Estado);
 
             if($statement->execute()){
-                header('Location: ../Vista/index.php');
+                header('Location: ../Vista/index.php?pagina=1');
             }else{
-                header('Location: ../Vista/edit.php');
+                header('Location: ../Vista/edit.php?pagina=1');
             }
         }
 
@@ -84,9 +84,9 @@
             $statement->bindParam(':Id', $Id);
             
             if($statement->execute()){
-                header('Location: ../Vista/index.php');
+                header('Location: ../Vista/index.php?pagina=1');
             }else{
-                header('Location: ../Vista/delete.php');
+                header('Location: ../Vista/delete.php?pagina=1');
             }
         }
         

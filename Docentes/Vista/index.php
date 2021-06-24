@@ -11,7 +11,7 @@
     $ModeloUsuarios->authSession();
 
     //ARTICULOS POR PAGINAS Y VALOR DE INICIO DEL LIMIT DE FUNCION GET
-    $articulosPorPagina = 10;
+    $articulosPorPagina = 9;
     $start = ($_GET['pagina']-1)*$articulosPorPagina;
 
     $ModeloDocentes = new Docentes();

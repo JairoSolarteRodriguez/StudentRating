@@ -18,22 +18,19 @@
     <title>Sistema de Notas</title>
 </head>
 <body>
+    <div class="container mt-5">       
+        <div class="form-group w-50">
+            <h1 class="text-center mb-4">Eliminar Administrador</h1>
+            <form action="../Controladores/delete.php" method="POST">
+                <input type="hidden" name="Id" value="<?= $Id;?>">
 
-<div class="container mt-5">
-    
-    <div class="form-group w-50 align-middle ">
-        <h1 class="text-center mb-4">Eliminar Administrador</h1>
-        <form action="../Controladores/delete.php" method="POST">
-            <input type="hidden" name="Id" value="<?= $Id;?>">
-
-            <p class="alert alert-danger text-center">Estás seguro que deseas eliminar este administrador?<br>
-            Si lo elimina será imposible recuperarlo.
-            </p>
-            <input type="submit" value="Eliminar Administrador" class="btn btn-danger mt-2 w-100">
-        </form>
-        <a href="index.php" class="btn btn-primary mt-2 w-100">Regresar</a>
+                <p class="alert alert-danger text-center">Estás seguro que deseas eliminar este administrador?<br>
+                Si lo elimina será imposible recuperarlo.
+                </p>
+                <input type="submit" value="Eliminar Administrador" class="btn btn-danger mt-2 w-100">
+            </form>
+            <a href="index.php?pagina=1" class="btn btn-primary mt-2 w-100">Regresar</a>
+        </div>
     </div>
-</div>
-
 </body>
 </html>

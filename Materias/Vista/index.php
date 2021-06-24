@@ -2,14 +2,27 @@
     require_once('../../Usuarios/Modelo/Usuarios.php');
     require_once('../Modelo/Materias.php');
 
+    if(!$_GET){
+        header("Location: index.php?pagina=1");
+    }
+
+    //ARTICULOS POR PAGINAS Y VALOR DE INICIO DEL LIMIT DE FUNCION GET
+    $articulosPorPagina = 9;
+    $start = ($_GET['pagina']-1)*$articulosPorPagina;
+
     $ModeloUsuarios = new Usuarios();
     $ModeloUsuarios->authSessionAdmin();
     $ModeloUsuarios->authSession();
 
     $ModeloMaterias = new Materias();
+
+    
+    // OBTENER EL NUMERO DE PAGINAS DINAMICAMENTE
+    // PASAMOS POR PARAMETRO CUANTOS ELEMENTOS POR PAGINA QUIERO QUE TENGA.
+    $paginas = $ModeloMaterias->pagi($articulosPorPagina);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -20,7 +33,6 @@
     <title>Sistema de Notas</title>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-md navbar-light bg-dark" id="nav"> 
         <div class="container">
             <a href="#" class="navbar-brand text-light fs-3 nav-link">Student<span class="fw-bold">Rating</span></a>
@@ -67,7 +79,11 @@
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
             <input type="search" class="form-control" placeholder="Buscar">
         </div>
-        <a href="add.php" class="btn btn-primary mb-3">Registrar Materia</a>
+        <a href="add.php" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add_course">Registrar Materia</a>
+
+        <?php
+            require_once('add.php');
+        ?>
 
         <div class="table-responsive">
             <table class="table table-dark table-hover">
@@ -80,7 +96,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        $Materias = $ModeloMaterias->get();
+                        $Materias = $ModeloMaterias->get($start, $articulosPorPagina);
                         if($Materias != null):
                             foreach($Materias as $Materia):
                     ?>
@@ -101,20 +117,16 @@
 
             <nav>
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link">Anterior</a>
+                    <li class="page-item <?php echo $_GET['pagina']<=1? 'disabled': '' ?>">
+                        <a href="index.php?pagina=<?=$_GET['pagina']-1; ?>" class="page-link">Anterior</a>
                     </li>
-                    <li class="page-item active">
-                        <a href="#" class="page-link">1</a>
+                    <?php for($i=0; $i<$paginas; $i++): ?>
+                    <li class="page-item <?php echo $_GET['pagina']==$i+1 ? 'active': '' ?>">
+                        <a href="index.php?pagina=<?= $i+1 ?>" class="page-link"><?=$i+1?></a>
                     </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">Siguiente</a>
+                    <?php endfor;?>
+                    <li class="page-item <?php echo $_GET['pagina']>=$paginas? 'disabled': '' ?>">
+                        <a href="index.php?pagina=<?=$_GET['pagina']+1; ?>" class="page-link">Siguiente</a>
                     </li>
                 </ul>
             </nav>
@@ -123,6 +135,7 @@
 
 
     <script src="../../Js/dark-mode.js"></script>
+    <script src="../../Js/validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -30,7 +30,6 @@ const validarFormulario = (e) => {
         case "Contrasena":
             validarCampo(expresiones.password, e.target, 'contrasena');
             break;
-
     }
 }
 const validarCampo = (expresion, input, campo) => {

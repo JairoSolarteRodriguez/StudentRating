@@ -3,31 +3,30 @@
 
     $ModeloUsuarios = new Usuarios();
     $ModeloUsuarios->authSession();
-
-    if(isset($_GET['error'])){
-        $error = $_GET['error'];
-
-        if($error == 'no_empty'){
-            echo '<strong style="color: red;">No puede dejar campos en blanco</strong>';
-        }elseif($error == 'badName'){
-            echo '<strong style="color: red;">Introduzca correctamente el campo Nombre (Solo caracteres alfabeticos)</strong>';
-        }
-    }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sistema de Notas</title>
-</head>
-<body>
-    <h1>Registrar Materia</h1>
 
-    <form action="../Controladores/add.php" method="POST">
-        <label for="Nombre">Nombre Materia</label><br>
-        <input type="text" autocomplete="off" required placeholder="Nombre Materia" name="Nombre"><br><br>
+<div class="modal" id="add_course">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="container">
+                    <h1 class="text-center fs-3">Registrar Materia</h1>
+                </div>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form action="../Controladores/add.php" method="POST" id="formulario">
 
-        <input type="submit" value="Registrar Materia">
-    </form>
-</body>
-</html>
+                        <label for="Nombre">Nombre Materia</label>
+                        <div class="position-relative" id="grupo_nombre">
+                            <input type="text" autocomplete="off" required placeholder="Nombre Materia" name="Nombre" class="form-control mb-2"><i class="bi position-absolute px-2" style="top: 4px; right: 0; "></i>
+                            <p class="formulario_error alert alert-danger fw-light visually-hidden" style="font-size: 0.85rem;">El nombre de la materia tiene que ser de 1 a 40 caracteres y solo puede contener letras</p>
+                        </div>
+                    </form>
+                    <button class="btn btn-success w-100" type="submit" form="formulario">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@
     }
 
     //ARTICULOS POR PAGINAS Y VALOR DE INICIO DEL LIMIT DE FUNCION GET
-    $articulosPorPagina = 10;
+    $articulosPorPagina = 9;
     $start = ($_GET['pagina']-1)*$articulosPorPagina;
 
     $ModeloUsuarios = new Usuarios();
@@ -33,7 +33,6 @@
     <title>Sistema de Notas</title>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-md navbar-light bg-dark" id="nav">
         <div class="container">
             <a href="#" class="navbar-brand text-light fs-3 nav-link">Student<span class="fw-bold">Rating</span></a>

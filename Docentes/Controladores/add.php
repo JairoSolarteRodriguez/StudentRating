@@ -2,7 +2,6 @@
     require_once('../Modelo/Docentes.php');
 
     if($_POST){
-
         $ModeloDocentes = new Docentes();
 
         $Nombre = $_POST['Nombre'];
@@ -12,7 +11,6 @@
         $Password = hash('sha512', $Contra);
 
         $ModeloDocentes->add($Nombre, $Apellido, $Usuario, $Password);
-
     }else{
         header('Location: ../Vista/index.php');
     }

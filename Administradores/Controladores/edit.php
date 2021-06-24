@@ -12,7 +12,6 @@
             $Password = hash('sha512', $Contra);
             $Estado = $_POST['Estado'];
 
-    
             $ModeloAdministradores->update($Id, $Nombre, $Apellido, $Usuario, $Password, $Estado);
 
     }else{
