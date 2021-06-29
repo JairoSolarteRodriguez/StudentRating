@@ -5,15 +5,17 @@ const inputs = document.querySelectorAll('#formulario input');
 const expresiones = {
     usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
     nombres: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    password: /^.{4,255}$/, // 4 a 12 digitos.
+    password: /^.{4,255}$/, // 4 a 255 digitos.
     correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    nota: /^\d{7,14}$/ // 7 a 14 numeros.
+    nota: /^[0-9]{7,14}$/, // 7 a 14 numeros.
+    promedio: /^[0-9]{2,3}$/ // 2 a 3 numeros.
 }
 const campos = {
     nombre: false,
     apellido: false,
     usuario: false,
-    contrasena: false
+    contrasena: false,
+    promedio: false
 }
 
 const validarFormulario = (e) => {
@@ -29,6 +31,19 @@ const validarFormulario = (e) => {
             break;
         case "Contrasena":
             validarCampo(expresiones.password, e.target, 'contrasena');
+            break;
+        case "Documento":
+            validarCampo(expresiones.nota, e.target, 'documento');
+            break;
+        case "Correo":
+            validarCampo(expresiones.correo, e.target, 'correo');
+            break;
+        case "Promedio":
+            if (e.target.value <= 10 && e.target.value >= 100) {
+                campos.promedio = 'prom_out';
+            } else {
+                validarCampo(expresiones.promedio, e.target, 'promedio');
+            }
             break;
     }
 }
@@ -72,5 +87,13 @@ inputs.forEach((input) => {
 });
 
 formulario.addEventListener('submit', (e) => {
-    if (campos.nombre && campos.apellido && campos.usuario && campos.contrasena) {}
+    if (campos.promedio === 'prom_out') {
+        document.querySelector(`#grupo_promedio input`).classList.remove('border', 'border-success', 'border-2');
+        document.querySelector(`#grupo_promedio input`).classList.add('border', 'border-danger', 'border-2');
+        document.querySelector(`#grupo_promedio i`).classList.remove('bi-check-circle', 'text-success', 'fs-5');
+        document.querySelector(`#grupo_promedio i`).classList.add('bi-x-circle', 'text-danger', 'fs-5');
+        document.querySelector(`#grupo_promedio .formulario_error`).classList.remove('visually-hidden');
+    }
+
+
 });

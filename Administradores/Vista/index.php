@@ -91,9 +91,7 @@
             <?php endif; ?>
         </div>
 
-        <?php
-            require_once('add.php');
-        ?>
+        <?php require_once('add.php'); ?>
 
         <div class="table-responsive mb-2">
             <table class="table table-dark table-hover">

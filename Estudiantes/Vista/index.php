@@ -113,8 +113,10 @@
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
             <input type="search" class="form-control" placeholder="Buscar">
         </div>
-        <a href="add.php" class="btn btn-primary mb-3">Registrar Estudiante</a>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#add_student">Registrar Estudiante</button>
         
+        <?php require_once('add.php'); ?>
+
         <div class="table-responsive">
             <table class="table table-dark table-hover">
                 <thead>
@@ -185,6 +187,7 @@
     
 
     <script src="../../Js/dark-mode.js"></script>
+    <script src="../../Js/validate.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>
